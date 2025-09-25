@@ -46,6 +46,7 @@ pipeline {
             steps {
                 sh '''
                    ls -lrt
+                   ls -lrt
                    mvn clean install
                 '''
             }
