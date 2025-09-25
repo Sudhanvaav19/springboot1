@@ -4,6 +4,10 @@ pipeline {
     environment {
         MAVEN_HOME = '/usr/share/maven' 
     }
+    tools {
+        maven 'M3'   // Tells Jenkins to use Maven installation named 'M3'
+        jdk 'Java17' // You can also define a JDK if needed
+    }
 
     stages {
         stage('Checkout') {
