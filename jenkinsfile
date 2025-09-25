@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    environment {
+        MAVEN_HOME = '/usr/share/maven' 
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'appifgfgg9', url: 'https://github.com/Sudhanvaav19/springboot1.git'
+            }
+        }
+
+       stage('Install') {
+            steps {
+             sh '''
+                   ls -lrt
+                   maven install
+            }
+        }
+    }
+}
