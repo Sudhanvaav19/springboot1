@@ -17,7 +17,7 @@ pipeline {
             steps {
              sh '''
                    ls -lrt
-                   maven clean install
+                   mvn clean install
                 '''
             }
         }
