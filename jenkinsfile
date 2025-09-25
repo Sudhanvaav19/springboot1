@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     environment {
-        MAVEN_HOME = '/usr/share/maven' 
+        MAVEN_HOME = '/usr/share/maven'
     }
-
 
     stages {
         stage('Checkout') {
@@ -13,9 +12,39 @@ pipeline {
             }
         }
 
-       stage('Install') {
+        stage('Validate') {
             steps {
-             sh '''
+                sh 'mvn validate'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sh 'mvn verify'
+            }
+        }
+
+        stage('Install') {
+            steps {
+                sh '''
                    ls -lrt
                    mvn clean install
                 '''
@@ -23,3 +52,4 @@ pipeline {
         }
     }
 }
+
